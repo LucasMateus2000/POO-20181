@@ -1,0 +1,42 @@
+import java.io.*;
+
+public class ArquivoTXT {
+    private File arquivo;
+    public ArquivoTXT(){
+        this.arquivo = new File("FILE.txt");
+    }
+    public void criaFile(File arquivo){
+
+        try{
+            arquivo.createNewFile();
+        }catch(IOException EX){
+            System.out.println("ERRO");
+        }
+    }
+
+    public void readFile(File arquivo) {
+        try {
+            FileReader ler = new FileReader(arquivo);
+            BufferedReader read = new BufferedReader(ler);
+            String linha = read.readLine();
+            while(linha != null){
+                System.out.println(linha);
+                linha = read.readLine();
+            }
+        }catch(IOException EX){
+            System.out.println("ERRO");
+        }
+    }
+
+    public void writeFile(File arquivo, String txt){
+        try{
+            FileWriter fileWriter = new FileWriter(arquivo);
+            BufferedWriter write = new BufferedWriter(fileWriter);
+
+            write.write(txt);
+            
+            write.close();
+            fileWriter.close();
+        }catch(IOException EX){}
+    }
+}
